@@ -8,7 +8,7 @@ const VideoSchema = new Schema({
   },
   vidURL: {
     type: String,
-    required: 'vidURL of the video is required'
+    required: 'video URL of the video is required'
   },
   category: {
     type: String,

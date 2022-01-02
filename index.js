@@ -19,21 +19,23 @@ app.use(cors());
 
 dbConnection();
 
-app.get('/', (req, res) => {
+app.get('/', (_, res) => {
   res.send('Welcome to Watch API');
 });
-app.get('/hello', (req, res) => {
+app.get('/hello', (_, res) => {
   res.json({
     success: true,
     message: "Hey, What's up?"
   });
 });
 
+// Routing endpoints to their controllers
 app.use('/videos', videos);
 
 app.use(route404Handler);
 app.use(errorHandler);
 
 app.listen(PORT, () => {
+  console.log(`MODE: `, process.env.NODE_ENV);
   console.log(`server running on http://localhost:${PORT}`);
 });

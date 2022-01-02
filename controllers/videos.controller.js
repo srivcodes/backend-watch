@@ -1,6 +1,6 @@
 const { Video } = require('../models/video.model');
 
-const getAllVideos = async (req, res) => {
+const getAllVideos = async (_, res) => {
   try {
     const videos = await Video.find({});
 
@@ -21,7 +21,7 @@ const addNewVideo = async (req, res) => {
     const NewVideo = new Video(videoDetails);
     const savedVideo = await NewVideo.save();
 
-    res.status(201).json({ response: savedVideo });
+    res.status(201).json({ data: savedVideo });
   } catch (error) {
     console.error(error);
     res.status(500).json({
@@ -35,11 +35,9 @@ const addNewVideo = async (req, res) => {
 const getVideoById = async (req, res) => {
   try {
     const { vidId } = req.params;
-    console.log('vidID:', vidId);
     const videoFound = await Video.findById(vidId);
-    console.log('videoFound:', videoFound);
     videoFound
-      ? res.status(200).json({ response: videoFound })
+      ? res.status(200).json({ data: videoFound })
       : res.status(404).json({ message: 'video not found in Database' });
   } catch (error) {
     console.error(error);

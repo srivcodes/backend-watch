@@ -4,15 +4,13 @@
   "description": "A backend Express app for Watch.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node index.js",
-    "dev": "nodemon index.js"
+    "start": "nodemon index.js"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/srivcodes/backend-watch.git"
   },
-  "author": "Utsav kumar",
+  "author": "Srividya MV",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/srivcodes/backend-watch/issues"
