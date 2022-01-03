@@ -1,13 +1,14 @@
-const express = require('express');
+const express = require("express");
+const { get } = require("lodash");
 const router = express.Router();
 
 const {
-  getAllVideos,
-  addNewVideo,
-  getVideoById
-} = require('../controllers/videos.controller');
+	getAllVideos,
+	addNewVideo,
+	getVideoById,
+} = require("../controllers/videos.controller");
 
-router.route('/').get(getAllVideos).post(addNewVideo);
+router.route("/").get(getAllVideos).post(addNewVideo);
 
-router.route('/:vidId').get(getVideoById);
+router.route("/:vidId").get(getVideoById);
 module.exports = router;
