@@ -21,10 +21,10 @@ app.use(cors());
 
 dbConnection();
 
-app.get('/', (req, res) => {
+app.get('/', (_, res) => {
   res.send('This a message sent by Watch project API');
 });
-app.get('/hello', (req, res) => {
+app.get('/hello', (_, res) => {
   res.json({
     success: true,
     message: 'This is a test message to say hello'
