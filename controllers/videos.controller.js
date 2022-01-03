@@ -3,7 +3,6 @@ const { Video } = require('../models/video.model');
 const getAllVideos = async (_, res) => {
   try {
     const videos = await Video.find({});
-
     res.status(200).json({ data: videos });
   } catch (error) {
     console.error(error);
