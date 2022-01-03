@@ -3,6 +3,8 @@ const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
 const JWT_SECRET = process.env.JWT_SECRET;
 
+
+
 const getUserDetails = async (req, res) => {
   const { user } = req;
   res.status(200).json({
@@ -78,6 +80,8 @@ const userAuthenticator = async (req, res) => {
     });
   }
 };
+
+console.log(jwt);
 
 const updatePassword = async (req, res) => {
   try {
