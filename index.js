@@ -4,44 +4,47 @@ const cors = require('cors');
 const morgan = require('morgan');
 require('dotenv').config();
 
+const users = require('./routes/users.router');
 const videos = require('./routes/videos.router');
+const playlists = require('./routes/playlists.router');
 
 const dbConnection = require('./db/dbConnect.js');
+const userAuthorization = require('./middlewares/userAuthorization');
 const route404Handler = require('./middlewares/route404Handler');
 const errorHandler = require('./middlewares/errorHandler');
 
 const app = express();
 const PORT = process.env.PORT || 8000;
-
 app.use(bodyParser.json());
 app.use(morgan('tiny'));
 app.use(cors());
 
-app.use(function (req, res, next) {
-  res.header('Access-Control-Allow-Origin', '*');
-  res.header('Access-Control-Allow-Headers', 'X-Requested-With');
-  next();
-});
-
 dbConnection();
 
-app.get('/', (_, res) => {
-  res.send('Welcome to Watch API');
+app.get('/', (req, res) => {
+  res.send('This a message sent by Watch project API');
 });
-app.get('/hello', (_, res) => {
+app.get('/hello', (req, res) => {
   res.json({
     success: true,
-    message: "Hey, What's up?"
+    message: 'This is a test message to say hello'
   });
 });
 
-// Routing endpoints to their controllers
 app.use('/videos', videos);
+app.use('/users', users);
 
+//User Authorization Middleware
+app.use(userAuthorization);
+//Protected Route(needs to be authenticated before getting accessed)
+app.use('/playlists', playlists);
+
+// 404 Route Handler
 app.use(route404Handler);
+
+//Error Handeler
 app.use(errorHandler);
 
 app.listen(PORT, () => {
-  console.log(`MODE: `, process.env.NODE_ENV);
   console.log(`server running on http://localhost:${PORT}`);
 });
