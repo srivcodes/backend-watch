@@ -5,7 +5,7 @@ const JWT_SECRET = process.env.JWT_SECRET;
 const userAuthorization = async (req, res, next) => {
 	try {
 		const tokenContainer = req.headers.authorization;
-		const token = tokenContainer.split(" ")[1];
+		const token = tokenContainer?.split(" ")[1];
 		const decoded = jwt.verify(token, JWT_SECRET);
 
 		const user = await User.findById(decoded.userId);
